@@ -178,7 +178,10 @@
 
               // Mock the output method
               var orig_print = Boo.print;
-              Boo.print = function(args) { result += args.join(' ') + '\n'; };
+              Boo.print = function() {
+                var args = Array.prototype.slice.call(arguments, 0);
+                result += args.join(' ') + '\n';
+              };
 
               // Mock setTimeout to force define/require to work synchronously
               var orig_setTimeout = setTimeout;
